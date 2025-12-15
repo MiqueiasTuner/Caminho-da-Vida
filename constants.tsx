@@ -67,7 +67,7 @@ export const SPECIAL_EVENTS: SpecialEvent[] = [
   {
     id: 'confra-final-ano',
     title: 'Festa de Final de Ano',
-    date: '2025-12-31T21:00', // Data do evento ajustada para 31/12
+    date: '2025-12-31T00:00', // Data do evento ajustada para 31/12 sem horário definido
     location: 'Igreja Caminho da Vida',
     description: 'Grandes coisas fez o Senhor por nós, e por isso estamos alegres (Salmos 126:3). Venha celebrar conosco! Pagamento até 20/12.',
     imageUrl: 'https://i.postimg.cc/9Xd4PZ2W/Grandes-coisas-fez-o-Senhor-por-nos-e-por-isso-estamos-alegres-Salmos-1263.png',

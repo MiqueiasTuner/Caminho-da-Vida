@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, X, MapPin, Clock, CalendarDays, AlertCircle } from 'lucide-react';
+import { Calendar, X, MapPin, CalendarDays, AlertCircle } from 'lucide-react';
 import { SPECIAL_EVENTS } from '../constants';
 
 export const Events: React.FC = () => {
@@ -17,8 +17,6 @@ export const Events: React.FC = () => {
     return new Intl.DateTimeFormat('pt-BR', {
       day: 'numeric',
       month: 'long',
-      hour: '2-digit',
-      minute: '2-digit'
     }).format(date);
   };
 
@@ -65,7 +63,7 @@ export const Events: React.FC = () => {
                   <span className="text-church-cyan font-bold tracking-widest uppercase mb-2 animate-pulse">Próximo Evento</span>
                   <h3 className="text-3xl font-bold text-white mb-4 leading-tight drop-shadow-md">{nextEvent.title}</h3>
                   <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 group-hover:bg-white/20 transition-colors">
-                     <Clock className="w-4 h-4 text-church-cyan" />
+                     <Calendar className="w-4 h-4 text-church-cyan" />
                      <span className="text-white font-mono">{formatDate(nextEvent.date)}</span>
                   </div>
                 </>
@@ -158,8 +156,6 @@ export const Events: React.FC = () => {
                       <div>
                         <h4 className="font-bold text-slate-800 dark:text-white text-lg">{event.title}</h4>
                         <p className="text-sm text-slate-500 dark:text-gray-400 flex items-center gap-1 mt-1">
-                          <Clock className="w-3 h-3" /> {new Date(event.date).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}
-                          <span className="mx-1">•</span>
                           <MapPin className="w-3 h-3" /> {event.location}
                         </p>
                         <p className="text-sm text-slate-600 dark:text-gray-300 mt-2">{event.description}</p>
