@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Schedule } from './components/Schedule';
+import { Events } from './components/Events';
 import { Gallery } from './components/Gallery';
 import { About } from './components/About';
 import { Location } from './components/Location';
 import { Footer } from './components/Footer';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 
 const App: React.FC = () => {
   // Initialize theme state (default to dark)
@@ -31,9 +33,11 @@ const App: React.FC = () => {
         <Schedule />
         <Gallery />
         <About />
+        <Events />
         <Location />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { ServiceEvent, BibleVerse, Leader, GalleryImage } from './types';
+import { ServiceEvent, BibleVerse, Leader, GalleryImage, SpecialEvent } from './types';
 import { BookOpen, Calendar, Flame, Users, Heart, Star, Music, Award } from 'lucide-react';
 import React from 'react';
 
@@ -60,6 +60,23 @@ export const WEEKLY_SCHEDULE: ServiceEvent[] = [
     description: "Reunião da família para celebrar a Jesus.",
     icon: <Heart className="w-6 h-6 text-red-500" />
   }
+];
+
+// LISTA DE EVENTOS FUTUROS (Acampamentos, conferências, etc)
+// Deixe vazio [] se não houver eventos.
+export const SPECIAL_EVENTS: SpecialEvent[] = [
+  // Exemplo de como preencher futuramente:
+  /*
+  {
+    id: '1',
+    title: 'Acampamento de Jovens 2025',
+    date: '2025-07-15T08:00',
+    location: 'Chácara Recanto de Paz',
+    description: 'Três dias de imersão, adoração e comunhão.',
+    imageUrl: 'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80',
+    buttonLink: '#'
+  }
+  */
 ];
 
 export const VERSES: BibleVerse[] = [

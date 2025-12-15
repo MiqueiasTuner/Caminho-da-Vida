@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Home, Calendar, MapPin, Users, Camera, Sun, Moon } from 'lucide-react';
+import { Menu, X, Home, Calendar, MapPin, Users, Camera, Sun, Moon, CalendarDays } from 'lucide-react';
 import { LOGO_URL } from '../constants';
 
 interface NavbarProps {
@@ -42,6 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDark }) => {
     { name: 'Programação', href: '#schedule', icon: <Calendar className="w-4 h-4" /> },
     { name: 'Galeria', href: '#gallery', icon: <Camera className="w-4 h-4" /> },
     { name: 'Sobre Nós', href: '#about', icon: <Users className="w-4 h-4" /> },
+    { name: 'Eventos', href: '#events', icon: <CalendarDays className="w-4 h-4" /> },
     { name: 'Localização', href: '#location', icon: <MapPin className="w-4 h-4" /> },
   ];
 

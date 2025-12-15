@@ -26,3 +26,13 @@ export interface GalleryImage {
   description: string;
   category: string;
 }
+
+export interface SpecialEvent {
+  id: string;
+  title: string;
+  date: string; // Formato ISO: YYYY-MM-DDTHH:mm
+  location: string;
+  description: string;
+  imageUrl?: string;
+  buttonLink?: string; // Link para inscrição se houver
+}
