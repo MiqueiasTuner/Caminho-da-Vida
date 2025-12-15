@@ -22,6 +22,19 @@ export const Events: React.FC = () => {
     }).format(date);
   };
 
+  // Define o tipo de elemento wrapper: 'a' se tiver link, 'div' caso contrário
+  const BannerWrapper = nextEvent?.buttonLink ? 'a' : 'div';
+  const bannerProps = nextEvent?.buttonLink 
+    ? {
+        href: nextEvent.buttonLink,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        className: "w-full md:w-1/2 relative bg-slate-800 overflow-hidden group cursor-pointer block"
+      }
+    : {
+        className: "w-full md:w-1/2 relative bg-slate-800 overflow-hidden group"
+      };
+
   return (
     <section id="events" className="py-16 bg-white dark:bg-church-dark border-t border-gray-100 dark:border-white/5 transition-colors duration-300">
       <div className="container mx-auto px-4">
@@ -38,8 +51,8 @@ export const Events: React.FC = () => {
         <div className="max-w-5xl mx-auto bg-slate-100 dark:bg-church-surface rounded-3xl overflow-hidden shadow-xl border border-gray-200 dark:border-white/10 flex flex-col md:flex-row min-h-[300px]">
           
           {/* Left Side: Visual / Countdown */}
-          <div className="w-full md:w-1/2 relative bg-slate-800 overflow-hidden group">
-            <div className="absolute inset-0 bg-black/40 z-10"></div>
+          <BannerWrapper {...bannerProps}>
+            <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/30 transition-colors duration-300"></div>
             <img 
               src={nextEvent?.imageUrl || "https://images.unsplash.com/photo-1510936111840-65e151ad71bb?q=80&w=2090&auto=format&fit=crop"} 
               alt="Evento" 
@@ -50,8 +63,8 @@ export const Events: React.FC = () => {
               {nextEvent ? (
                 <>
                   <span className="text-church-cyan font-bold tracking-widest uppercase mb-2 animate-pulse">Próximo Evento</span>
-                  <h3 className="text-3xl font-bold text-white mb-4 leading-tight">{nextEvent.title}</h3>
-                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20">
+                  <h3 className="text-3xl font-bold text-white mb-4 leading-tight drop-shadow-md">{nextEvent.title}</h3>
+                  <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 group-hover:bg-white/20 transition-colors">
                      <Clock className="w-4 h-4 text-church-cyan" />
                      <span className="text-white font-mono">{formatDate(nextEvent.date)}</span>
                   </div>
@@ -63,7 +76,7 @@ export const Events: React.FC = () => {
                 </>
               )}
             </div>
-          </div>
+          </BannerWrapper>
 
           {/* Right Side: Details / Empty State */}
           <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center items-start bg-slate-100 dark:bg-church-surface transition-colors">
@@ -79,7 +92,7 @@ export const Events: React.FC = () => {
                       <span>{nextEvent.location}</span>
                     </div>
                     {nextEvent.buttonLink && (
-                      <a href={nextEvent.buttonLink} className="inline-block mt-4 text-church-cyan font-bold hover:underline">
+                      <a href={nextEvent.buttonLink} target="_blank" rel="noopener noreferrer" className="inline-block mt-4 text-church-cyan font-bold hover:underline">
                         Inscreva-se agora &rarr;
                       </a>
                     )}

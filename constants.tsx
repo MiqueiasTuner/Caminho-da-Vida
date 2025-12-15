@@ -63,20 +63,16 @@ export const WEEKLY_SCHEDULE: ServiceEvent[] = [
 ];
 
 // LISTA DE EVENTOS FUTUROS (Acampamentos, conferências, etc)
-// Deixe vazio [] se não houver eventos.
 export const SPECIAL_EVENTS: SpecialEvent[] = [
-  // Exemplo de como preencher futuramente:
-  /*
   {
-    id: '1',
-    title: 'Acampamento de Jovens 2025',
-    date: '2025-07-15T08:00',
-    location: 'Chácara Recanto de Paz',
-    description: 'Três dias de imersão, adoração e comunhão.',
-    imageUrl: 'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&q=80',
-    buttonLink: '#'
+    id: 'confra-final-ano',
+    title: 'Festa de Final de Ano',
+    date: '2025-12-20T20:00', // Data do evento/pagamento ajustada para o próximo ano para aparecer na lista
+    location: 'Igreja Caminho da Vida',
+    description: 'Grandes coisas fez o Senhor por nós, e por isso estamos alegres (Salmos 126:3). Venha celebrar conosco! Pagamento até 20/12.',
+    imageUrl: 'https://i.postimg.cc/9Xd4PZ2W/Grandes-coisas-fez-o-Senhor-por-nos-e-por-isso-estamos-alegres-Salmos-1263.png',
+    buttonLink: WHATSAPP_LINK
   }
-  */
 ];
 
 export const VERSES: BibleVerse[] = [
