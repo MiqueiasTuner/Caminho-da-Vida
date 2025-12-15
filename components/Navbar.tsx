@@ -52,12 +52,13 @@ export const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDark }) => {
         : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center text-slate-800 dark:text-white">
         
-        {/* LOGO AREA - Image */}
+        {/* LOGO AREA - IMAGE */}
         <div 
           className="flex items-center gap-3 group cursor-pointer" 
           onClick={(e) => scrollToSection(e, '#home')}
         >
-          <div className="relative w-14 h-14 overflow-hidden rounded-full border-2 border-church-cyan bg-slate-50 dark:bg-church-navy shadow-lg shadow-church-cyan/20 group-hover:shadow-church-cyan/40 transition-shadow duration-300">
+          {/* Circular Container for Logo */}
+          <div className="relative w-16 h-16 rounded-full overflow-hidden bg-white shadow-lg group-hover:scale-105 transition-all duration-300 border-2 border-white/20 flex items-center justify-center">
              <img 
                src={LOGO_URL} 
                alt="Logo Caminho da Vida" 

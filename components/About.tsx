@@ -1,5 +1,5 @@
 import React from 'react';
-import { VERSES, LEADERS } from '../constants';
+import { VERSES, LEADERS, LOGO_URL } from '../constants';
 import { Quote } from 'lucide-react';
 
 export const About: React.FC = () => {
@@ -45,26 +45,40 @@ export const About: React.FC = () => {
             </div>
 
             <div className="bg-gradient-to-b from-slate-200 to-white dark:from-church-surface dark:to-church-dark rounded-2xl p-1 border border-gray-200 dark:border-white/10 shadow-2xl">
-              <div className="bg-white dark:bg-church-dark/50 rounded-xl p-8 text-center h-full">
-                <div className="w-32 h-32 bg-gradient-to-br from-church-blue to-church-cyan rounded-full mx-auto mb-8 flex items-center justify-center p-1 shadow-lg shadow-cyan-500/20">
-                   <div className="w-full h-full bg-slate-50 dark:bg-church-navy rounded-full flex items-center justify-center border-4 border-transparent">
-                        <span className="text-5xl">✝</span>
-                   </div>
-                </div>
+              <div className="bg-white dark:bg-church-dark/50 rounded-xl p-8 text-center h-full relative overflow-hidden flex flex-col items-center">
                 
-                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2 uppercase tracking-widest">
-                  Ministério Apostólico
-                </h3>
-                <div className="w-10 h-1 bg-church-cyan mx-auto mb-8"></div>
-                
-                <div className="space-y-6">
-                  {LEADERS.map((leader, idx) => (
-                    <div key={idx} className="group">
-                      <p className="text-xl font-bold text-slate-700 dark:text-white group-hover:text-church-cyan transition-colors">{leader.name}</p>
-                      <p className="text-sm text-slate-500 dark:text-gray-500 uppercase tracking-wider">{leader.role}</p>
+                {/* Background decorative glow inside card */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 bg-church-cyan/10 blur-[50px] rounded-full pointer-events-none"></div>
+
+                <div className="relative z-10 w-full flex flex-col items-center">
+                    {/* Logo Container - Circular Image */}
+                    <div className="w-40 h-40 mx-auto mb-6 flex items-center justify-center group hover:scale-105 transition-transform duration-500 rounded-full overflow-hidden bg-white shadow-xl shadow-church-blue/10 border-4 border-slate-50 dark:border-white/5">
+                       <img 
+                           src={LOGO_URL} 
+                           alt="Logo Caminho da Vida" 
+                           className="w-full h-full object-cover" 
+                       />
                     </div>
-                  ))}
+                    
+                    <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-1 uppercase tracking-wider">
+                      Ministério Apostólico
+                    </h3>
+                    <p className="text-xs text-church-cyan font-semibold uppercase tracking-[0.2em] mb-6">
+                        Igreja em Células
+                    </p>
+
+                    <div className="w-16 h-0.5 bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-700 to-transparent mx-auto mb-8"></div>
+                    
+                    <div className="space-y-8">
+                      {LEADERS.map((leader, idx) => (
+                        <div key={idx} className="group relative">
+                          <p className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-church-cyan transition-colors duration-300">{leader.name}</p>
+                          <p className="text-sm text-church-blue dark:text-gray-400 uppercase tracking-widest font-medium mt-1">{leader.role}</p>
+                        </div>
+                      ))}
+                    </div>
                 </div>
+
               </div>
             </div>
           </div>

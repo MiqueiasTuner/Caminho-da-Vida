@@ -24,13 +24,14 @@ export const Hero: React.FC = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 z-10 text-center flex flex-col items-center mb-24">
         
-        <h2 className="text-church-cyan font-bold tracking-[0.3em] uppercase mb-4 text-sm md:text-base animate-fade-in-up drop-shadow-md">
-          Igreja Evangélica Projeto de Deus
+        <h2 className="text-church-cyan font-semibold tracking-widest uppercase mb-4 text-sm md:text-base animate-fade-in-up drop-shadow-md">
+          Caminho da Vida Igreja em Células
         </h2>
 
+        {/* Título restaurado para o estilo da imagem: Sans-serif, Bold, Sem itálico */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight leading-none drop-shadow-2xl">
           DISCIPULADO COM<br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-church-cyan to-church-blue text-glow">
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-cyan-400 to-church-blue drop-shadow-[0_0_25px_rgba(6,182,212,0.4)]">
             EXCELÊNCIA
           </span>
         </h1>
@@ -52,30 +53,34 @@ export const Hero: React.FC = () => {
           
           {/* Card 1: Vision */}
           <div className="bg-white/95 dark:bg-church-navy/80 backdrop-blur-md p-10 flex flex-col items-center text-center border-b md:border-b-0 md:border-r border-gray-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-church-navy transition-colors duration-300 group">
-            <Eye className="w-12 h-12 text-church-blue dark:text-church-cyan mb-6 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3">Nossa Visão</h3>
-            <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
-              Ser uma igreja discipuladora que forma líderes comprometidos com o Reino.
+            <Eye className="w-10 h-10 text-church-blue dark:text-church-cyan mb-6 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 font-serif">Nossa Visão</h3>
+            <p className="text-slate-600 dark:text-gray-300 text-base leading-relaxed font-light">
+              Expandir o Reino de Deus pela pregação do evangelho, mantendo bons relacionamentos, cultivando amizades e fazendo novos discípulos de Jesus.
             </p>
           </div>
 
           {/* Card 2: Mission (Highlighted) */}
           <div className="bg-gradient-to-br from-church-cyan to-church-blue p-10 flex flex-col items-center text-center relative overflow-hidden group">
             <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <Target className="w-12 h-12 text-white mb-6 group-hover:rotate-12 transition-transform duration-300" />
-            <h3 className="text-xl font-bold text-white mb-3">Nossa Missão</h3>
-            <p className="text-white/90 text-sm leading-relaxed">
+            <Target className="w-10 h-10 text-white mb-6 group-hover:rotate-12 transition-transform duration-300" />
+            <h3 className="text-2xl font-bold text-white mb-4 font-serif">Nossa Missão</h3>
+            <p className="text-white/95 text-base leading-relaxed font-light">
               Glorificar a Deus e fazer discípulos de Cristo em todas as nações.
             </p>
           </div>
 
           {/* Card 3: Values */}
           <div className="bg-white/95 dark:bg-church-navy/80 backdrop-blur-md p-10 flex flex-col items-center text-center md:border-l border-gray-100 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-church-navy transition-colors duration-300 group">
-            <Heart className="w-12 h-12 text-church-blue dark:text-church-cyan mb-6 group-hover:scale-110 transition-transform duration-300" />
-            <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3">Nossos Valores</h3>
-            <p className="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
-              Ética bíblica, fidelidade a Deus, amor ao próximo e serviço.
-            </p>
+            <Heart className="w-10 h-10 text-church-blue dark:text-church-cyan mb-6 group-hover:scale-110 transition-transform duration-300" />
+            <h3 className="text-2xl font-bold text-slate-800 dark:text-white mb-4 font-serif">Nossos Valores</h3>
+            <ul className="text-slate-600 dark:text-gray-300 text-base leading-relaxed text-left space-y-2 font-light">
+              <li className="flex items-start gap-3"><span className="text-church-cyan font-bold">•</span> Amar a Deus em primeiro lugar</li>
+              <li className="flex items-start gap-3"><span className="text-church-cyan font-bold">•</span> Amar ao próximo</li>
+              <li className="flex items-start gap-3"><span className="text-church-cyan font-bold">•</span> Viver em santidade</li>
+              <li className="flex items-start gap-3"><span className="text-church-cyan font-bold">•</span> Zelar pela comunhão</li>
+              <li className="flex items-start gap-3"><span className="text-church-cyan font-bold">•</span> Fazer novos discípulos</li>
+            </ul>
           </div>
 
         </div>

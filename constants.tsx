@@ -8,7 +8,8 @@ export const TAGLINE = "Alimentando vidas com a palavra há 14 anos";
 export const ADDRESS = "Rua das Samambaias, QD 16/2, LT 24/25";
 export const MAP_LINK = "https://maps.app.goo.gl/rxyeebsfwAcCkD1J6";
 export const EMAIL = "caminhodavidaministerio@gmail.com";
-export const LOGO_URL = "https://scontent.fgyn23-1.fna.fbcdn.net/v/t39.30808-6/344763352_196420889906130_6661167472433396429_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=HZUxJBUt87MQ7kNvwH0UnHQ&_nc_oc=AdmdNvToGRb6_uvrpAVMXsoPLrjt6i9hxmARlhOYs6fAX6HB-eJu8Sa2LIAmuGAGu9k&_nc_zt=23&_nc_ht=scontent.fgyn23-1.fna&_nc_gid=rESQduUM0acaOH3sNzYwpg&oh=00_Afl4G2axzSgW3oFLFXqDJZ9Jv5uQNEcIMxEtGknJbnYYPA&oe=6941E28F";
+export const WHATSAPP_LINK = "https://wa.me/556285465311";
+export const LOGO_URL = "https://i.postimg.cc/x1hmqg0R/image-(1).png";
 
 export const SOCIAL_LINKS = {
   instagram: "https://www.instagram.com/caminho_igreja/",
