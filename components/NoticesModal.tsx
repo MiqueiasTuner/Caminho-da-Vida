@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Calendar, MapPin, Bell } from 'lucide-react';
+import { X, Calendar, MapPin, ExternalLink, ChevronRight } from 'lucide-react';
 import { SPECIAL_EVENTS } from '../constants';
 
 interface NoticesModalProps {
@@ -8,14 +8,14 @@ interface NoticesModalProps {
 }
 
 export const NoticesModal: React.FC<NoticesModalProps> = ({ isOpen, onClose }) => {
-  if (!isOpen) return null;
-
   // Pega o próximo evento
   const upcomingEvents = SPECIAL_EVENTS
     .filter(event => new Date(event.date) >= new Date())
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   const nextEvent = upcomingEvents.length > 0 ? upcomingEvents[0] : null;
+
+  if (!nextEvent) return null;
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
@@ -25,105 +25,83 @@ export const NoticesModal: React.FC<NoticesModalProps> = ({ isOpen, onClose }) =
     }).format(date);
   };
 
+  // Classes para controlar a visibilidade e animação (Slide in from right)
+  const visibilityClass = isOpen 
+    ? "translate-x-0 opacity-100 pointer-events-auto" 
+    : "translate-x-[120%] opacity-0 pointer-events-none";
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-300">
-      <div className="bg-white dark:bg-church-surface w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300 relative border border-gray-200 dark:border-white/10 flex flex-col md:flex-row max-h-[90vh]">
+    <div className={`fixed bottom-24 right-4 md:right-6 z-40 w-[calc(100%-2rem)] md:w-[350px] transition-all duration-500 ease-in-out transform ${visibilityClass}`}>
+      
+      {/* Card Container */}
+      <div className="bg-white dark:bg-church-surface rounded-2xl shadow-2xl border border-gray-200 dark:border-white/10 overflow-hidden flex flex-col relative group">
         
-        {/* Botão Fechar Mobile (fica em cima da imagem) */}
+        {/* Botão Fechar - Flutuante sobre a imagem ou canto */}
         <button 
           onClick={onClose}
-          className="md:hidden absolute top-4 right-4 z-50 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 backdrop-blur-md"
+          className="absolute top-3 right-3 z-20 p-1.5 bg-black/40 hover:bg-black/60 text-white rounded-full backdrop-blur-sm transition-colors"
+          aria-label="Fechar aviso"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
-        {/* Lado Esquerdo: Imagem */}
-        <div className="w-full md:w-1/2 relative h-64 md:h-auto bg-slate-900">
-          {nextEvent ? (
-            <img 
-              src={nextEvent.imageUrl} 
-              alt={nextEvent.title}
-              className="w-full h-full object-cover opacity-90"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-church-blue/20">
-               <Bell className="w-20 h-20 text-church-cyan opacity-50" />
-            </div>
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-church-surface/50"></div>
+        {/* Imagem de Cabeçalho */}
+        <div className="h-32 w-full relative overflow-hidden bg-slate-900">
+          <div className="absolute top-3 left-3 z-10 bg-church-cyan text-church-dark text-[10px] font-bold px-2 py-1 rounded shadow-lg uppercase tracking-wider">
+            Destaque
+          </div>
+          <img 
+            src={nextEvent.imageUrl} 
+            alt={nextEvent.title}
+            className="w-full h-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent"></div>
           
-          {/* Tag de Destaque */}
-          <div className="absolute top-4 left-4 bg-church-cyan text-church-dark font-bold px-3 py-1 rounded-full text-xs uppercase tracking-widest shadow-lg">
-            Aviso Importante
+          {/* Título sobre a imagem (opcional, ou no corpo) */}
+          <div className="absolute bottom-3 left-4 right-4">
+             <div className="flex items-center gap-1.5 text-church-cyan text-xs font-bold uppercase tracking-wider mb-1">
+                <Calendar className="w-3 h-3" />
+                <span>{formatDate(nextEvent.date)}</span>
+             </div>
+             <h3 className="text-white font-bold text-lg leading-tight shadow-black drop-shadow-md">
+               {nextEvent.title}
+             </h3>
           </div>
         </div>
 
-        {/* Lado Direito: Conteúdo */}
-        <div className="w-full md:w-1/2 p-8 md:p-10 flex flex-col relative bg-white dark:bg-church-surface overflow-y-auto">
-           {/* Botão Fechar Desktop */}
-           <button 
-            onClick={onClose}
-            className="hidden md:block absolute top-4 right-4 p-2 text-slate-400 hover:text-church-cyan transition-colors"
-          >
-            <X className="w-6 h-6" />
-          </button>
+        {/* Corpo do Card */}
+        <div className="p-5">
+           <p className="text-slate-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 leading-relaxed">
+             {nextEvent.description}
+           </p>
 
-          {nextEvent ? (
-            <div className="flex flex-col h-full justify-center">
-              <div className="flex items-center gap-2 mb-2 text-church-cyan font-bold uppercase tracking-wider text-sm">
-                <Calendar className="w-4 h-4" />
-                <span>{formatDate(nextEvent.date)}</span>
-              </div>
+           {/* Botões de Ação */}
+           <div className="flex items-center gap-2">
+              {nextEvent.buttonLink ? (
+                <a 
+                  href={nextEvent.buttonLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-church-cyan hover:bg-cyan-500 text-church-dark font-bold py-2.5 px-4 rounded-lg text-sm text-center transition-colors shadow-lg shadow-cyan-500/20 flex items-center justify-center gap-2"
+                >
+                  Participar <ExternalLink className="w-3 h-3" />
+                </a>
+              ) : (
+                <button className="flex-1 bg-gray-100 dark:bg-white/10 cursor-default text-gray-400 font-bold py-2 px-4 rounded-lg text-sm">
+                  Em breve
+                </button>
+              )}
               
-              <h2 className="text-3xl font-bold text-slate-800 dark:text-white mb-4 leading-tight">
-                {nextEvent.title}
-              </h2>
-              
-              <div className="w-12 h-1 bg-church-cyan rounded-full mb-6"></div>
+              {/* Botão secundário para ver detalhes/calendário */}
+              <a href="#events" onClick={onClose} className="p-2.5 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 rounded-lg text-slate-600 dark:text-gray-300 transition-colors" title="Ver no Calendário">
+                <ChevronRight className="w-4 h-4" />
+              </a>
+           </div>
+        </div>
 
-              <p className="text-slate-600 dark:text-gray-300 text-lg leading-relaxed mb-6">
-                {nextEvent.description}
-              </p>
-
-              <div className="flex items-center gap-2 text-slate-500 dark:text-gray-400 text-sm mb-8">
-                <MapPin className="w-4 h-4" />
-                <span>{nextEvent.location}</span>
-              </div>
-
-              <div className="mt-auto flex flex-col gap-3">
-                 {nextEvent.buttonLink && (
-                   <a 
-                     href={nextEvent.buttonLink}
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="w-full bg-church-cyan hover:bg-cyan-500 text-church-dark font-bold py-3 px-6 rounded-xl text-center transition-colors shadow-lg shadow-cyan-500/20"
-                   >
-                     Confirmar Presença
-                   </a>
-                 )}
-                 <button 
-                   onClick={onClose}
-                   className="w-full bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-600 dark:text-gray-300 font-medium py-3 px-6 rounded-xl transition-colors"
-                 >
-                   Fechar Aviso
-                 </button>
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full text-center">
-               <div className="w-16 h-16 bg-slate-100 dark:bg-white/5 rounded-full flex items-center justify-center mb-4">
-                 <Bell className="w-8 h-8 text-slate-400" />
-               </div>
-               <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">Sem avisos no momento</h3>
-               <p className="text-slate-500 dark:text-gray-400 mb-6">Fique atento, novidades aparecerão aqui!</p>
-               <button 
-                 onClick={onClose}
-                 className="px-6 py-2 bg-slate-200 dark:bg-white/10 rounded-lg hover:bg-slate-300 transition-colors"
-               >
-                 Fechar
-               </button>
-            </div>
-          )}
+        {/* Barra de Progresso/Decorativa inferior */}
+        <div className="h-1 w-full bg-slate-100 dark:bg-white/5">
+          <div className="h-full bg-church-cyan w-1/3"></div>
         </div>
       </div>
     </div>

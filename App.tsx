@@ -23,11 +23,11 @@ const App: React.FC = () => {
     }
   }, [isDark]);
 
-  // Auto-open notices modal on first load (opcional: usando timeout para não ser imediato demais)
+  // Auto-open notices widget on first load
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsNoticesOpen(true);
-    }, 1500); // Abre após 1.5 segundos
+    }, 1000); // Abre após 1 segundo (rápido pois não bloqueia a tela)
     return () => clearTimeout(timer);
   }, []);
 
