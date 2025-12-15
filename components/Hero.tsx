@@ -1,8 +1,12 @@
 import React from 'react';
-import { Eye, Target, Heart } from 'lucide-react';
+import { Eye, Target, Heart, Bell } from 'lucide-react';
 import { TAGLINE } from '../constants';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  openNotices: () => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ openNotices }) => {
   return (
     <section id="home" className="relative min-h-[110vh] flex flex-col items-center justify-start pt-40 lg:pt-52 overflow-hidden bg-slate-900 dark:bg-church-dark transition-colors duration-500">
       
@@ -42,9 +46,19 @@ export const Hero: React.FC = () => {
           {TAGLINE}
         </p>
 
-        <a href="#schedule" className="px-10 py-4 bg-church-cyan hover:bg-cyan-400 text-church-dark font-bold rounded-sm uppercase tracking-widest shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-300">
-          Nossa Programação
-        </a>
+        <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto px-4">
+          <a href="#schedule" className="px-10 py-4 bg-church-cyan hover:bg-cyan-400 text-church-dark font-bold rounded-sm uppercase tracking-widest shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.6)] transition-all duration-300 text-center">
+            Nossa Programação
+          </a>
+          
+          <button 
+            onClick={openNotices}
+            className="px-10 py-4 border border-white/30 hover:bg-white/10 text-white font-bold rounded-sm uppercase tracking-widest backdrop-blur-sm transition-all duration-300 flex items-center justify-center gap-2 group"
+          >
+            <Bell className="w-4 h-4 group-hover:animate-swing" />
+            Ver Avisos
+          </button>
+        </div>
       </div>
 
       {/* Cards Overlay - 3 Pillars */}

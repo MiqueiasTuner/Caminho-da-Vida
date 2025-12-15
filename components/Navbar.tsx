@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Home, Calendar, MapPin, Users, Camera, Sun, Moon, CalendarDays } from 'lucide-react';
+import { Menu, X, Home, Calendar, MapPin, Users, Camera, Sun, Moon, CalendarDays, Bell } from 'lucide-react';
 import { LOGO_URL } from '../constants';
 
 interface NavbarProps {
   toggleTheme: () => void;
   isDark: boolean;
+  openNotices: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDark }) => {
+export const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDark, openNotices }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -93,13 +94,24 @@ export const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDark }) => {
             </a>
           ))}
           
-          <button 
-            onClick={toggleTheme}
-            className={`p-2 rounded-full transition-colors ${scrolled ? 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20' : 'bg-white/10 hover:bg-white/20 text-white'}`}
-            title="Alternar Tema"
-          >
-            {isDark ? <Sun className="w-5 h-5 text-amber-300" /> : <Moon className="w-5 h-5 text-church-blue" />}
-          </button>
+          <div className="flex items-center gap-2 pl-4 border-l border-gray-200 dark:border-white/10">
+            <button 
+              onClick={openNotices}
+              className={`relative p-2 rounded-full transition-colors ${scrolled ? 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20' : 'bg-white/10 hover:bg-white/20 text-white'}`}
+              title="Avisos"
+            >
+              <Bell className="w-5 h-5 text-church-cyan" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+            </button>
+
+            <button 
+              onClick={toggleTheme}
+              className={`p-2 rounded-full transition-colors ${scrolled ? 'bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/20' : 'bg-white/10 hover:bg-white/20 text-white'}`}
+              title="Alternar Tema"
+            >
+              {isDark ? <Sun className="w-5 h-5 text-amber-300" /> : <Moon className="w-5 h-5 text-church-blue" />}
+            </button>
+          </div>
 
           <a 
             href="#location" 
@@ -112,6 +124,14 @@ export const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDark }) => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4">
+           <button 
+              onClick={openNotices}
+              className={`relative p-2 rounded-full transition-colors ${scrolled ? 'bg-slate-100 dark:bg-white/10' : 'bg-white/10 text-white'}`}
+            >
+              <Bell className="w-5 h-5 text-church-cyan" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+           </button>
+
            <button 
             onClick={toggleTheme}
             className={`p-2 rounded-full transition-colors ${scrolled ? 'bg-slate-100 dark:bg-white/10' : 'bg-white/10 text-white'}`}
@@ -127,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDark }) => {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-church-navy/95 backdrop-blur-xl border-t border-gray-200 dark:border-white/10 shadow-xl transition-all">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-church-navy/95 backdrop-blur-xl border-t border-gray-200 dark:border-white/10 shadow-xl transition-all h-screen">
           <div className="flex flex-col px-4 py-6 space-y-4">
             {navLinks.map((link) => (
               <a 
@@ -140,6 +160,13 @@ export const Navbar: React.FC<NavbarProps> = ({ toggleTheme, isDark }) => {
                 {link.name}
               </a>
             ))}
+            <button 
+              onClick={() => { openNotices(); setIsOpen(false); }}
+              className="flex items-center gap-3 text-slate-700 dark:text-white py-3 border-b border-gray-200 dark:border-white/5 last:border-0 hover:text-church-cyan dark:hover:text-church-cyan px-2 font-medium"
+            >
+              <Bell className="w-4 h-4" />
+              Avisos
+            </button>
           </div>
         </div>
       )}
